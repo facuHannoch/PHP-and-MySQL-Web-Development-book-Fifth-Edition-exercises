@@ -1,0 +1,61 @@
+// PCRE regular expression functions 
+/**
+//  * Anything enclosed in the square brackets ([ and ]) is a character class—a set of characters to which a matched character must belong. Note that the expression in the square brackets matches only a single character.
+ * 
+ * /shop/       // match the word “shop”
+ * 
+ * /http:\/\//  // If you need to match a literal / inside the regular expression, you will need to escape it with the \ (backslash) character.
+ * 
+ * #http://#    // If your pattern contains many instances of your chosen delimiter, you might consider choosing a different delimiter.
+ * 
+ * /shop/i      // You may sometimes wish to add a pattern modifier after the closing delimiter.
+ * 
+ * /.at/        // you can use the . character as a wildcard for any other single character except a newline (\n). This matches the strings "cat", "sat", and "mat", among others.
+ * 
+ * /[a-z]at/    // the first character can be any letter from a to z
+ * 
+ * /[aeiou]/    // means any vowel
+ * 
+ * /[a-zA-Z]/   // describe a range with -
+ * 
+//  * . The caret symbol (^, sometimes called circumflex) means not when it is placed inside the square brackets.
+ * /[^a-z]/     // matches any character that is not between a and z
+ * 
+ * The enclosing square brackets delimit the class, and the inner square brackets are part of the class name
+ * /[[:alpha]1-5]   // describes a class that may contain an alphabetical character, or any of the digits from 1 to 5.
+ * 
+//  * you may want to specify that there might be multiple occurrences of a particular string or class of character. You can represent this using three special characters in your regular expression. The symbol means that the pattern can be repeated zero or more times, and the + symbol means that the pattern can be repeated one or more times. The ? symbol means that the pattern should appear either once or not at all. The symbol should appear directly after the part of the expression that it applies to.
+ * 
+ * /[[:alnum:]]+/   // means “at least one alphanumeric character.”
+ * 
+//  *  You can split expressions using parentheses, exactly the same way as you would in an arithmetic expression.
+ * 
+ * /(very )*large/  // matches "large", "very large", "very very large", and so on.
+ * 
+//  * You can specify how many times something can be repeated by using a numerical expression in curly braces ({}). You can show an exact number of repetitions ({3} means exactly three repetitions), a range of repetitions ({2,4} means from two to four repetitions), or an open-ended range of repetitions ({2,} means at least two repetitions).
+ * 
+ * /(very ){1,3}/   // matches "very ", "very very ", and "very very very ".
+ * 
+//  * The caret symbol (^) is used at the start of a regular expression to show that it must appear at the beginning of a searched string, and $ is used at the end of a regular expression to show that it must appear at the end.
+ * 
+ * /^bob/       // matches bob at the start of a string.
+ * 
+ * /com$/       // matches com at the end of a string.
+ * 
+ * /^[a-z]$/    // this pattern matches a string containing only a single character between a and z.
+ * 
+//  * You can represent a choice in a regular expression with a vertical pipe.
+ * 
+ * /com|edu|net/    // match com, edu, or net.
+ * 
+//  * A backreference in a pattern is indicated by a backslash followed by a digit (and possibly more than one, depending on the context). It is used for matching the same subexpression appearing in more than one place in a string, without explicitly specifying the value.
+ * 
+ * /^([a-z]+) \1 black sheep/   // The \1 here is a backreference to the previously matched subexpression—that is, ([a-z]+), which is one or more alphabetical characters.
+ * Given this pattern, the string
+ *   baa baa black sheep
+ * will match, but the string
+ *   blah baa black sheep
+ * will not
+ * 
+//  * If multiple subexpressions have previously been encountered, they are effectively numbered in order starting at 1, if you wish to use them in backreferences.
+ */
