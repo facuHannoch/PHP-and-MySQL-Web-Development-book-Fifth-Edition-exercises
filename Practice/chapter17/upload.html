@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload a File</title>
+</head>
+<body>
+    <h1>Upload a File</h1>
+    <!-- In the <form> tag, you must set the attribute enctype="multipart/form-data" to let the server know that a file is coming along with the regular information. -->
+    <form action="upload.php" method="POST" enctype="multipart/form-data">
+
+        <!-- Note that this form uses POST; file uploads do not work with GET. -->
+
+        <!-- If you do not have a server-side configuration setting to control the maximum uploaded file size, you must have a form field that sets the maximum size file that can be uploaded. This is a hidden field --> 
+        <input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
+        <!-- The value is the maximum size (in bytes) of files you will allow people to upload. -->
+
+        <label for="the_file">Upload a file:</label>
+
+        <!-- You need an input of type file -->
+        <input type="file" name="the_file" id="the_file"/>
+        <!-- You can choose whatever name you like for the file, but you should keep it in mind because you will use this name to access your file from the receiving PHP script. -->
+
+        <!-- you can easily modify the form and script to handle multiple files. Instead of a single file upload form field, use multiple form fields and change the name to reference the use of an array that will hold the names of the multiple uploaded files. For example, -->
+        <!-- <input type="file" name="the_files[]" id="the_files"/> -->
+        <!-- In your script, you would refer to the elements of the array using their array position, such as $_FILES['the_files']['name'][0], $_FILES['the_files']['name'][1], and so on. -->
+        
+
+        <input type="submit" value="Upload File" />
+        
+    </form>
+</body>
+</html>
