@@ -1,0 +1,20 @@
+# To use HTTP Basic Authentication, you will need mod_auth_basic, plus an authentication module 
+# corresponding to the password storage mecanism you plan to use
+
+# le dice a Apache donde buscar el archivo que contiene las contraseñas de los usuarios
+AuthUserFile /var/www/.htpass
+
+# el tipo de autenticacion
+AuthType Basic
+
+# el nombre de la autenticacion, este va a ser publico para los usuarios
+AuthName "Authorization Needed"
+
+# el proveedor para la autenticacion, en este caso es un archivo
+AuthBasicProvider file
+
+# quienes pueden ingresar, en este caso son los los usuarios validos
+Require valid-user
+
+# a donde se redijira a los usuarios si estos ingresaron datos incorrectos
+ErrorDocument 401 var/www/pmwd53/chapter16/rejection.html
