@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Sample Form</title>
+  </head>
+
+  <body>
+    <form id="myForm">
+      <label for="first_name">First Name</label><br />
+
+      <input
+        type="text"
+        name="name[first]"
+        id="first_name"
+        class="name"
+      /><br />
+
+      <label for="last_name">Last Name</label><br />
+
+      <input type="text" name="name[last]" id="last_name" class="name" /><br />
+
+      <button type="submit">Submit Form</button>
+    </form>
+
+    <hr />
+
+    <div id="webConsole">
+      <h3>Web Console</h3>
+    </div>
+
+    <script src="//code.jquery.com/jquery-2.2.3.min.js"></script>
+
+    <script>
+      var webConsole = function (msg) {
+        // This function will be used at various points in the rest of our application to provide some real-time output of the script execution. We accomplish this by appending new paragraph (<p>) elements within an empty <div> element with the webConsole ID every time a new message is to be displayed.
+        var console = $("#webConsole");
+
+        var newMessage = $("<p>").text(msg);
+
+        console.append(newMessage);
+      };
+
+      $(document).on("ready", function () {
+        // This will, upon loading of the HTML document, add new placeholder attributes to the input fields with the IDs of first_name and last_name, respectively. To the end user, this process happens fast enough that it is nearly indistinguishable from including those attributes statically within the HTML document.
+        $("#first_name").attr("placeholder", "Johnny");
+        $("#last_name").attr("placeholder", "Appleseed");
+      });
+
+      $("#myForm").on("submit", function (event) { // this the submit event, which is triggered when the form itself is submitted. Our selector specifies this listener should be limited to only the form whose ID is myForm
+        var first_name = $("#first_name").val();
+        var last_name = $("#last_name").val();
+        webConsole("The form was submitted");
+        alert("Hello, " + first_name + " " + last_name + "!");
+        // this script extracts the final value of each input field before displaying it as an alert modal using the native JavaScript alert function. It then updates the HTML page itself to reflect that the form was submitted.
+      });
+
+      $(".name").on("focusout", function (event) { // Upon losing focus (presumably because the user entered some data into the <form> element), the focusout event will be triggered and our function called. The function then examines the element that triggered the event (by using the target property of the passed event object) and creates a message using the webConsole function previously explained.
+        var nameField = $(event.target);
+
+        webConsole(
+          "Name field '" +
+            nameField.attr("id") +
+            "' was updated to '" +
+            nameField.val() +
+            "''"
+        );
+      });
+    </script>
+  </body>
+</html>
